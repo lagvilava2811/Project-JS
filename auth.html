@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cute Lamp · ავტორიზაცია</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/cute-alert.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="auth-page" data-on="false">
+    <div class="auth-container">
+      <!-- Cute Lamp -->
+      <div class="lamp-wrapper">
+        <div class="lamp-container">
+          <svg class="lamp-svg" viewBox="0 0 200 300">
+            <ellipse class="inner-glow" cx="100" cy="110" rx="60" ry="30" />
+            <rect
+              class="lamp-base"
+              x="92"
+              y="100"
+              width="16"
+              height="160"
+              rx="8"
+            />
+            <rect
+              class="lamp-base"
+              x="60"
+              y="250"
+              width="80"
+              height="12"
+              rx="6"
+            />
+            <line class="cord-line" x1="130" y1="110" x2="130" y2="180" />
+            <circle class="cord-bead" cx="130" cy="190" r="6" />
+            <circle
+              class="cord-hit"
+              cx="130"
+              cy="190"
+              r="25"
+              fill="transparent"
+            />
+            <path
+              class="lamp-shade"
+              d="M30 110 C 30 50, 170 50, 170 110 C 170 125, 30 125, 30 110 Z"
+            />
+          </svg>
+
+          <div class="instruction">
+            <i class="fas fa-hand-point-down"></i>
+            <span>გაიწიეთ თოკი</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <div class="login-form" id="loginForm">
+        <h2>Welcome Back</h2>
+        <form id="loginFormElement">
+          <div class="form-group">
+            <label><i class="fas fa-envelope"></i> Email</label>
+            <input
+              type="email"
+              placeholder="your@email.com"
+              id="loginEmail"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-lock"></i> Password</label>
+            <input
+              type="password"
+              placeholder="••••••••"
+              id="loginPassword"
+              required
+            />
+          </div>
+
+          <div class="form-links">
+            <a href="#" id="switchToRegister">Create account</a>
+            <a href="#" id="forgotPassword">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="login-btn" id="loginBtn">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+          </button>
+          <p id="loginError" class="error-message"></p>
+        </form>
+      </div>
+
+      <!-- Register Form -->
+      <div class="login-form" id="registerForm" style="display: none">
+        <h2>Create Account</h2>
+        <form id="registerFormElement">
+          <div class="form-row">
+            <div class="form-group">
+              <label><i class="fas fa-user"></i> First Name</label>
+              <input type="text" id="firstName" required />
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-user"></i> Last Name</label>
+              <input type="text" id="lastName" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="regEmail" required />
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-lock"></i> Password</label>
+            <input type="password" id="regPassword" minlength="8" required />
+            <small style="color: #888; display: block; margin-top: 5px"
+              >მინიმუმ 8 სიმბოლო</small
+            >
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-calendar"></i> Age</label>
+            <input
+              type="number"
+              id="age"
+              min="1"
+              max="120"
+              value="25"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-map-marker-alt"></i> Address</label>
+            <input type="text" id="address" value="Tbilisi" required />
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-phone"></i> Phone</label>
+            <input
+              type="tel"
+              id="phone"
+              placeholder="+995555123456"
+              value="+995555123456"
+              required
+            />
+            <small style="color: #888; display: block; margin-top: 5px"
+              >ფორმატი: +995555123456</small
+            >
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-mail-bulk"></i> Zipcode</label>
+            <input type="text" id="zipcode" value="0101" required />
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-image"></i> Avatar URL</label>
+            <input
+              type="url"
+              id="avatar"
+              value="https://placehold.co/150"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-venus-mars"></i> Gender</label>
+            <select id="gender" required>
+              <option value="MALE">Male</option>
+              <option value="FEMALE">Female</option>
+            </select>
+          </div>
+
+          <div class="form-links">
+            <a href="#" id="switchToLogin">Back to login</a>
+          </div>
+
+          <button type="submit" class="login-btn" id="registerBtn">
+            <i class="fas fa-user-plus"></i> Sign Up
+          </button>
+          <p id="registerError" class="error-message"></p>
+          <p id="registerSuccess" class="success-message"></p>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/cute-alert.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      // DOM Elements
+      const body = document.body;
+      const cordBead = document.querySelector(".cord-bead");
+      const cordLine = document.querySelector(".cord-line");
+      const hitArea = document.querySelector(".cord-hit");
+      const loginBtn = document.getElementById("loginBtn");
+      const registerBtn = document.getElementById("registerBtn");
+      const loginForm = document.getElementById("loginForm");
+      const registerForm = document.getElementById("registerForm");
+      const switchToRegister = document.getElementById("switchToRegister");
+      const switchToLogin = document.getElementById("switchToLogin");
+      const forgotPassword = document.getElementById("forgotPassword");
+
+      // State
+      let isOn = false;
+      let isDragging = false;
+      let startY = 0;
+      let currentY = 0;
+      const maxPull = 60;
+
+      // Initialize
+      function init() {
+        updateCordPosition(0);
+        setupCordEvents();
+        setupFormEvents();
+
+        const token = localStorage.getItem("access_token");
+        if (token) {
+          window.location.href = "index.html";
+        }
+      }
+
+      function setupCordEvents() {
+        hitArea.addEventListener("mousedown", startDrag);
+        document.addEventListener("mousemove", onDrag);
+        document.addEventListener("mouseup", stopDrag);
+
+        hitArea.addEventListener("touchstart", startDragTouch);
+        document.addEventListener("touchmove", onDragTouch);
+        document.addEventListener("touchend", stopDrag);
+
+        hitArea.addEventListener("click", function (e) {
+          if (!isDragging) toggleLamp();
+        });
+      }
+
+      function startDrag(e) {
+        e.preventDefault();
+        isDragging = true;
+        startY = e.clientY;
+        currentY = 0;
+        body.style.cursor = "grabbing";
+      }
+
+      function startDragTouch(e) {
+        e.preventDefault();
+        isDragging = true;
+        startY = e.touches[0].clientY;
+        currentY = 0;
+      }
+
+      function onDrag(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        currentY = Math.max(0, Math.min(maxPull, e.clientY - startY));
+        updateCordPosition(currentY);
+      }
+
+      function onDragTouch(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        currentY = Math.max(
+          0,
+          Math.min(maxPull, e.touches[0].clientY - startY)
+        );
+        updateCordPosition(currentY);
+      }
+
+      function stopDrag() {
+        if (!isDragging) return;
+        isDragging = false;
+        body.style.cursor = "";
+
+        if (currentY > 25) toggleLamp();
+        resetCord();
+      }
+
+      function updateCordPosition(y) {
+        cordBead.setAttribute("cy", 190 + y);
+        cordLine.setAttribute("y2", 180 + y);
+        hitArea.setAttribute("cy", 190 + y);
+      }
+
+      function resetCord() {
+        animateElement(cordBead, { cy: 190 }, 0.5);
+        animateElement(cordLine, { y2: 180 }, 0.5);
+        animateElement(hitArea, { cy: 190 }, 0.5);
+        currentY = 0;
+        startY = 0;
+      }
+
+      function animateElement(element, attributes, duration) {
+        const startTime = performance.now();
+        const startValues = {};
+
+        for (const attr in attributes) {
+          startValues[attr] = parseFloat(element.getAttribute(attr));
+        }
+
+        function animate(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / (duration * 1000), 1);
+
+          for (const attr in attributes) {
+            const startValue = startValues[attr];
+            const endValue = attributes[attr];
+            const currentValue =
+              startValue + (endValue - startValue) * progress;
+            element.setAttribute(attr, currentValue);
+          }
+
+          if (progress < 1) requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      function toggleLamp() {
+        isOn = !isOn;
+
+        try {
+          const clickSound = new Audio(
+            "data:audio/wav;base64,UklGRlwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVgAAACAgICAf39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f38="
+          );
+          clickSound.volume = 0.3;
+          clickSound.play();
+        } catch (e) {}
+
+        body.setAttribute("data-on", isOn);
+        document.documentElement.style.setProperty("--on", isOn ? 1 : 0);
+
+        if (isOn) {
+          loginForm.style.display = "block";
+          registerForm.style.display = "none";
+        } else {
+          loginForm.style.display = "none";
+          registerForm.style.display = "none";
+        }
+      }
+
+      function setupFormEvents() {
+        switchToRegister.addEventListener("click", (e) => {
+          e.preventDefault();
+          loginForm.style.display = "none";
+          registerForm.style.display = "block";
+        });
+
+        switchToLogin.addEventListener("click", (e) => {
+          e.preventDefault();
+          loginForm.style.display = "block";
+          registerForm.style.display = "none";
+        });
+
+        forgotPassword.addEventListener("click", (e) => {
+          e.preventDefault();
+          cuteAlert.info("Password reset feature coming soon!", 3000);
+        });
+
+        document
+          .getElementById("loginFormElement")
+          .addEventListener("submit", handleLogin);
+        document
+          .getElementById("registerFormElement")
+          .addEventListener("submit", handleRegister);
+      }
+
+      async function handleLogin(e) {
+        e.preventDefault();
+
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+        const errorEl = document.getElementById("loginError");
+
+        if (!email || !password) {
+          errorEl.textContent = "Please fill in both fields";
+          return;
+        }
+
+        const originalText = loginBtn.innerHTML;
+        loginBtn.innerHTML =
+          '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+        loginBtn.disabled = true;
+
+        try {
+          const response = await fetch(
+            "https://api.everrest.educata.dev/auth/sign_in",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password }),
+            }
+          );
+
+          const data = await response.json();
+
+          if (response.ok) {
+            localStorage.setItem("access_token", data.access_token);
+            localStorage.setItem("refresh_token", data.refresh_token);
+            localStorage.setItem("user", JSON.stringify(data.user || {}));
+
+            cuteAlert.success("✅ წარმატებული შესვლა!");
+
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 1500);
+          } else {
+            errorEl.textContent = "Invalid email or password";
+            loginBtn.innerHTML = originalText;
+            loginBtn.disabled = false;
+            cuteAlert.error("❌ არასწორი იმეილი ან პაროლი");
+          }
+        } catch (error) {
+          errorEl.textContent = "Network error. Please try again.";
+          loginBtn.innerHTML = originalText;
+          loginBtn.disabled = false;
+          cuteAlert.error("❌ ქსელის შეცდომა");
+        }
+      }
+
+      async function handleRegister(e) {
+        e.preventDefault();
+
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const age = parseInt(document.getElementById("age").value);
+        const email = document.getElementById("regEmail").value;
+        const password = document.getElementById("regPassword").value;
+        const address = document.getElementById("address").value;
+        const phone = document.getElementById("phone").value;
+        const zipcode = document.getElementById("zipcode").value;
+        const avatar = document.getElementById("avatar").value;
+        const gender = document.getElementById("gender").value;
+
+        const errorEl = document.getElementById("registerError");
+        const successEl = document.getElementById("registerSuccess");
+
+        if (
+          !firstName ||
+          !lastName ||
+          !email ||
+          !password ||
+          !address ||
+          !phone ||
+          !zipcode ||
+          !avatar
+        ) {
+          errorEl.textContent = "Please fill in all fields";
+          return;
+        }
+
+        if (password.length < 8) {
+          errorEl.textContent = "Password must be at least 8 characters";
+          return;
+        }
+
+        if (age < 1 || age > 120) {
+          errorEl.textContent = "Please enter a valid age (1-120)";
+          return;
+        }
+
+        if (!email.includes("@") || !email.includes(".")) {
+          errorEl.textContent = "Please enter a valid email address";
+          return;
+        }
+
+        if (!phone.startsWith("+") || phone.length < 10) {
+          errorEl.textContent =
+            "Please enter a valid phone number (format: +995555123456)";
+          return;
+        }
+
+        const originalText = registerBtn.innerHTML;
+        registerBtn.innerHTML =
+          '<i class="fas fa-spinner fa-spin"></i> Creating account...';
+        registerBtn.disabled = true;
+
+        const userData = {
+          firstName: firstName,
+          lastName: lastName,
+          age: age,
+          email: email,
+          password: password,
+          address: address,
+          phone: phone,
+          zipcode: zipcode,
+          avatar: avatar,
+          gender: gender,
+        };
+
+        try {
+          const response = await fetch(
+            "https://api.everrest.educata.dev/auth/sign_up",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(userData),
+            }
+          );
+
+          const data = await response.json();
+
+          if (response.ok) {
+            successEl.textContent = "✅ Registration successful! Please login.";
+            errorEl.textContent = "";
+
+            cuteAlert.success("✅ რეგისტრაცია წარმატებულია!");
+
+            document.getElementById("firstName").value = "";
+            document.getElementById("lastName").value = "";
+            document.getElementById("regEmail").value = "";
+            document.getElementById("regPassword").value = "";
+            document.getElementById("age").value = "25";
+            document.getElementById("address").value = "Tbilisi";
+            document.getElementById("phone").value = "+995555123456";
+            document.getElementById("zipcode").value = "0101";
+            document.getElementById("avatar").value =
+              "https://placehold.co/150";
+
+            setTimeout(() => {
+              loginForm.style.display = "block";
+              registerForm.style.display = "none";
+            }, 2000);
+          } else {
+            const errors = data.errorKeys || [];
+            if (errors.includes("errors.invalid_email")) {
+              errorEl.textContent = "❌ Invalid email format";
+            } else if (errors.includes("errors.invalid_phone_number")) {
+              errorEl.textContent = "❌ Invalid phone number format";
+            } else if (errors.includes("errors.invalid_avatar")) {
+              errorEl.textContent = "❌ Invalid avatar URL";
+            } else {
+              errorEl.textContent = errors.join(", ") || "Registration failed";
+            }
+            cuteAlert.error("❌ რეგისტრაცია ვერ მოხერხდა");
+          }
+        } catch (error) {
+          errorEl.textContent = "Network error. Please try again.";
+          cuteAlert.error("❌ ქსელის შეცდომა");
+        } finally {
+          registerBtn.innerHTML = originalText;
+          registerBtn.disabled = false;
+        }
+      }
+
+      setInterval(() => {
+        if (!isDragging && !isOn) {
+          const pulse = Math.sin(Date.now() / 1000) * 0.5 + 1;
+          cordBead.style.fill = `rgba(212, 163, 115, ${0.7 + pulse * 0.3})`;
+        }
+      }, 50);
+
+      init();
+    </script>
+
+    <style>
+      .success-message {
+        color: #10b981;
+        font-size: 13px;
+        margin-top: 15px;
+        text-align: center;
+      }
+      small {
+        color: #888;
+        font-size: 11px;
+        margin-top: 4px;
+        display: block;
+      }
+    </style>
+  </body>
+</html>

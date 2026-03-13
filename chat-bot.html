@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>techno life Chat Bot · Cute Lamp</title>
+    <link rel="stylesheet" href="css/chat-bot.css" />
+    <link rel="stylesheet" href="css/cute-alert.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body data-lamp="on">
+    <div class="chat-container">
+      <!-- Header with Cute Lamp Style -->
+      <div class="chat-header">
+        <div class="chat-header-content">
+          <div class="chat-logo">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div>
+            <h1>techno life</h1>
+            <p>AI პროდუქტის ასისტენტი</p>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="chat-nav-buttons">
+          <a href="index.html" class="nav-btn" title="მთავარი გვერდი">
+            <i class="fas fa-home"></i>
+          </a>
+          <a href="index.html#shop" class="nav-btn" title="მაღაზია">
+            <i class="fas fa-store"></i>
+          </a>
+        </div>
+
+        <!-- Mini Lamp -->
+        <div class="mini-lamp" id="chatMiniLamp">
+          <svg viewBox="0 0 100 150">
+            <ellipse class="mini-glow" cx="50" cy="45" rx="20" ry="10" />
+            <rect
+              class="mini-base"
+              x="44"
+              y="40"
+              width="12"
+              height="80"
+              rx="4"
+            />
+            <rect
+              class="mini-base"
+              x="30"
+              y="115"
+              width="40"
+              height="6"
+              rx="3"
+            />
+            <line class="mini-cord" x1="68" y1="45" x2="68" y2="90" />
+            <circle class="mini-bead" cx="68" cy="95" r="3" />
+            <path
+              class="mini-shade"
+              d="M15 45 C 15 15, 85 15, 85 45 C 85 55, 15 55, 15 45 Z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Hidden API Key -->
+      <div style="display: none">
+        <input
+          type="hidden"
+          id="apiKey"
+          value="AIzaSyAU3R5eMlvOdnkiNtwQ1UH7e_k0lpEnDlg"
+        />
+      </div>
+
+      <!-- Messages Area -->
+      <div class="chat-messages" id="chatMessages">
+        <div class="welcome">
+          <div class="welcome-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3>გამარჯობა! 👋</h3>
+          <p>
+            მე ვარ techno life Chat Bot - Cute Lamp Shop-ის პროდუქტის ასისტენტი.
+          </p>
+          <p class="welcome-highlight">
+            📱 დაგეხმარები აირჩიო სწორი ლეპტოპი ან ტელეფონი
+          </p>
+
+          <div class="welcome-suggestions">
+            <div class="suggestion-item" data-category="laptop">
+              <i class="fas fa-laptop"></i>
+              <span>ლეპტოპი</span>
+            </div>
+            <div class="suggestion-item" data-category="phone">
+              <i class="fas fa-mobile-alt"></i>
+              <span>ტელეფონი</span>
+            </div>
+          </div>
+
+          <p class="welcome-budget">და რა არის შენი ბიუჯეტი? (GEL ან USD)</p>
+
+          <!-- Quick Navigation Buttons -->
+          <div class="quick-nav">
+            <a href="index.html" class="quick-nav-btn">
+              <i class="fas fa-home"></i>
+              <span>მთავარი</span>
+            </a>
+            <a href="index.html#shop" class="quick-nav-btn">
+              <i class="fas fa-store"></i>
+              <span>მაღაზია</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="chat-input-container">
+        <div class="chat-input-wrapper">
+          <input
+            type="text"
+            id="userInput"
+            placeholder="დაწერეთ შეტყობინება..."
+            autocomplete="off"
+          />
+          <button id="sendBtn">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts - სწორი თანმიმდევრობა -->
+    <script src="js/cute-alert.js"></script>
+    <script src="js/chat-bot.js"></script>
+  </body>
+</html>

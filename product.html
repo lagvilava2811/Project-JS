@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>პროდუქტის დეტალები · Cute Lamp</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/cute-alert.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container header-container">
+        <div class="logo">
+          <h1>
+            <a href="index.html"><i class="fas fa-store"></i> Shop</a>
+          </h1>
+        </div>
+        <div class="header-icons">
+          <a href="auth.html" id="authLink"><i class="fas fa-user"></i></a>
+          <a href="cart.html" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cartCount">0</span>
+          </a>
+          <!-- Chat Bot Button -->
+          <a
+            href="chat-bot.html"
+            title="techno life Chat Bot"
+            style="color: #d4a373"
+          >
+            <i class="fas fa-robot"></i>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container product-detail-container" id="productDetail">
+      <div class="loading">იტვირთება...</div>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>📝 დაამატე შეფასება</h3>
+        <div class="rating-stars">
+          <i class="far fa-star" data-rating="1"></i>
+          <i class="far fa-star" data-rating="2"></i>
+          <i class="far fa-star" data-rating="3"></i>
+          <i class="far fa-star" data-rating="4"></i>
+          <i class="far fa-star" data-rating="5"></i>
+        </div>
+        <p id="selectedRating">აირჩიე 1-5 ვარსკვლავი</p>
+        <div class="form-group">
+          <label for="reviewerName">სახელი და გვარი</label>
+          <input type="text" id="reviewerName" required />
+        </div>
+        <button id="submitReview" class="btn btn-block">დამატება</button>
+        <p id="reviewError" class="error-message"></p>
+      </div>
+    </div>
+
+    <!-- Scripts - სწორი თანმიმდევრობა -->
+    <script src="js/cute-alert.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

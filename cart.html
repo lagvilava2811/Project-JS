@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>კალათა · Cute Lamp</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/cute-alert.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container header-container">
+        <div class="logo">
+          <h1>
+            <a href="index.html"><i class="fas fa-store"></i> Shop</a>
+          </h1>
+        </div>
+        <div class="header-icons">
+          <a href="auth.html" id="authLink"><i class="fas fa-user"></i></a>
+          <a href="cart.html" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cartCount">0</span>
+          </a>
+          <!-- Chat Bot Button -->
+          <a
+            href="chat-bot.html"
+            title="techno life Chat Bot"
+            style="color: #d4a373"
+          >
+            <i class="fas fa-robot"></i>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container cart-container">
+      <h2>🛒 შენი კალათა</h2>
+      <div id="cartItems" class="cart-grid">
+        <div class="loading">იტვირთება...</div>
+      </div>
+
+      <div id="cartSummary" class="cart-summary" style="display: none">
+        <h3>ჯამი: <span id="totalPrice">0</span> ₾</h3>
+        <button id="checkoutBtn" class="btn btn-block">გადახდა</button>
+        <button id="clearCartBtn" class="btn btn-secondary btn-block">
+          კალათის დაცლა
+        </button>
+      </div>
+
+      <div id="emptyCartMessage" style="display: none">
+        <p>კალათა ცარიელია</p>
+        <a href="index.html" class="btn">დაათვალიერე პროდუქტები</a>
+      </div>
+    </div>
+
+    <script src="js/cute-alert.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

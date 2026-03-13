@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <title>ონლიიკ მაგაზია · techno life</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/cute-alert.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body data-lamp="off">
+    <!-- Spiral Animation Container -->
+    <div id="spiral-container" class="spiral-container">
+      <canvas id="spiral-canvas"></canvas>
+
+      <!-- Enter Button -->
+      <div id="enter-button" class="enter-button hidden">
+        <button id="enter-shop" class="enter-btn">Enter Shop</button>
+        <p class="enter-hint">Press Enter ↵</p>
+      </div>
+    </div>
+
+    <!-- Main Shop Container -->
+    <div id="main-shop" class="main-shop hidden">
+      <!-- Header -->
+      <header>
+        <div class="container header-container">
+          <div class="logo">
+            <h1>
+              <a href="index.html"><i class="fas fa-store"></i> techno life</a>
+            </h1>
+          </div>
+
+          <div class="search-bar">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="მოძებნე პროდუქტი..."
+            />
+            <button id="searchBtn"><i class="fas fa-search"></i></button>
+          </div>
+
+          <div class="header-lamp">
+            <!-- Mini Lamp -->
+            <div class="mini-lamp" id="miniLamp">
+              <svg viewBox="0 0 100 150">
+                <ellipse class="mini-glow" cx="50" cy="45" rx="20" ry="10" />
+                <rect
+                  class="mini-base"
+                  x="44"
+                  y="40"
+                  width="12"
+                  height="80"
+                  rx="4"
+                />
+                <rect
+                  class="mini-base"
+                  x="30"
+                  y="115"
+                  width="40"
+                  height="6"
+                  rx="3"
+                />
+                <line class="mini-cord" x1="68" y1="45" x2="68" y2="90" />
+                <circle class="mini-bead" cx="68" cy="95" r="3" />
+                <path
+                  class="mini-shade"
+                  d="M15 45 C 15 15, 85 15, 85 45 C 85 55, 15 55, 15 45 Z"
+                />
+              </svg>
+            </div>
+
+            <div class="header-icons">
+              <a href="auth.html" id="authLink"><i class="fas fa-user"></i></a>
+              <a href="cart.html" class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cartCount">0</span>
+              </a>
+              <!-- Chat Bot Button -->
+              <a
+                href="chat-bot.html"
+                title="techno life Chat Bot"
+                style="color: #d4a373"
+              >
+                <i class="fas fa-robot"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <div class="container main-container">
+        <!-- Sidebar Filters -->
+        <aside class="sidebar">
+          <h3>🔍 ფილტრები</h3>
+
+          <div class="filter-group">
+            <label for="category">კატეგორია</label>
+            <select id="category">
+              <option value="">ყველა</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="brand">ბრენდი</label>
+            <select id="brand">
+              <option value="">ყველა</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>ფასის დიაპაზონი</label>
+            <div class="price-range">
+              <input type="number" id="minPrice" placeholder="მინ" />
+              <span>—</span>
+              <input type="number" id="maxPrice" placeholder="მაქს" />
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label for="rating">მინ. რეიტინგი</label>
+            <select id="rating">
+              <option value="0">ნებისმიერი</option>
+              <option value="4">4+ ★</option>
+              <option value="3">3+ ★</option>
+              <option value="2">2+ ★</option>
+            </select>
+          </div>
+
+          <button id="applyFilters" class="btn">გაფილტვრა</button>
+          <button id="clearFilters" class="btn btn-secondary">
+            გასუფთავება
+          </button>
+        </aside>
+
+        <!-- Products Grid -->
+        <main class="products-grid" id="productsGrid">
+          <div class="loading">იტვირთება...</div>
+        </main>
+      </div>
+
+      <!-- Pagination -->
+      <div class="container pagination-container">
+        <button id="prevPage" class="btn" disabled>← წინა</button>
+        <span id="pageInfo">გვერდი 1 / 1</span>
+        <button id="nextPage" class="btn">შემდეგი →</button>
+      </div>
+    </div>
+
+    <script src="js/spiral-animation.js"></script>
+    <script src="js/cute-alert.js"></script>
+    <script src="js/script.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const miniLamp = document.getElementById("miniLamp");
+        if (miniLamp) {
+          miniLamp.addEventListener("click", function () {
+            const isOn = document.body.getAttribute("data-lamp") === "on";
+            document.body.setAttribute("data-lamp", isOn ? "off" : "on");
+            document.documentElement.style.setProperty(
+              "--on",
+              isOn ? "0" : "1"
+            );
+          });
+        }
+
+        const token = localStorage.getItem("access_token");
+        if (token) {
+          document.body.setAttribute("data-lamp", "on");
+          document.documentElement.style.setProperty("--on", "1");
+        }
+      });
+    </script>
+  </body>
+</html>
